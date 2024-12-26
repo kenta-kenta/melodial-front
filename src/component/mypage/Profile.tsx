@@ -1,11 +1,5 @@
 import React from 'react'
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  Typography,
-  Avatar,
-} from '@mui/material'
+import { Card, CardContent, CardHeader, Typography } from '@mui/material'
 import { useQueryUser } from '../../hooks/useQueryDiaries'
 
 const Profile: React.FC = () => {
@@ -20,7 +14,6 @@ const Profile: React.FC = () => {
       <CardHeader title="プロフィール" />
       <CardContent>
         <div className="flex items-center space-x-4">
-          <Avatar alt={user?.user_name} className="w-16 h-16" />
           <div className="space-y-2">
             <Typography variant="h6">{user?.user_name || 'ゲスト'}</Typography>
             <Typography variant="body2" color="textSecondary">
