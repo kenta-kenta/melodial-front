@@ -24,14 +24,14 @@ export const Auth = () => {
     }
   }
   return (
-      <AuthForm
-        email={email}
-        setEmail={setEmail}
-        pw={pw}
-        setPw={setPw}
-        isLogin={isLogin}
-        setIsLogin={setIsLogin}
-        onSubmit={submitAuthHandler}
-      />
+    <AuthForm
+      email={email}
+      setEmail={setEmail}
+      pw={pw}
+      setPw={setPw}
+      isLogin={isLogin}
+      setIsLogin={setIsLogin}
+      onSubmit={submitAuthHandler}
+    />
   )
 }

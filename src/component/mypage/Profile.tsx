@@ -20,11 +20,7 @@ const Profile: React.FC = () => {
       <CardHeader title="プロフィール" />
       <CardContent>
         <div className="flex items-center space-x-4">
-          <Avatar
-            src={user?.avatar || '/default-avatar.png'}
-            alt={user?.user_name}
-            className="w-16 h-16"
-          />
+          <Avatar alt={user?.user_name} className="w-16 h-16" />
           <div className="space-y-2">
             <Typography variant="h6">{user?.user_name || 'ゲスト'}</Typography>
             <Typography variant="body2" color="textSecondary">

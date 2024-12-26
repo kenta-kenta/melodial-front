@@ -3,6 +3,16 @@ import { DiariesIcon } from '../component/home/DiariesIcon'
 import { MyPageIcon } from '../component/home/MyPageIcon'
 
 const Home = () => {
+  // cookieを取得
+  document.cookie = 'test2=hello'
+  const cookie = document.cookie
+  const cookieValue = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith('token'))
+    ?.split('=')[1]
+  console.log(cookieValue)
+  console.log(cookie)
+
   return (
     <div className="min-h-screen bg-orange-50/30">
       <div className="container mx-auto px-4 pt-24 pb-16">
