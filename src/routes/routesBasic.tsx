@@ -26,8 +26,8 @@ function AppRoutes() {
     <BrowserRouter>
       <Routes>
         {/* <Route path="/diary" element={<Diary />} /> */}
+        <Route path="/" element={<Auth />} />
         <Route path="/" element={<App />}>
-          <Route path="/" element={<Auth />} />
           <Route path="/home" element={<Home />} />
           <Route path="diary" element={<Diary />} />
           <Route path="diaries" element={<Diaries />} />

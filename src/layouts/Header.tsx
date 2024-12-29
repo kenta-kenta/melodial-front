@@ -20,9 +20,9 @@ export default function Header(props: any) {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             <h1 className="text-xl font-semibold text-orange-600 hover:text-orange-700">
-              <Link to="/home">日記アプリ</Link>
+              {props.isLogin ? <Link to="/home">Melodial</Link> : 'Melodial'}
             </h1>
-            {props.isLogin && (
+            {props.isLogin ? (
               <>
                 <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -56,10 +56,12 @@ export default function Header(props: any) {
                   </ul>
                 </nav>
               </>
+            ) : (
+              <></>
             )}
           </div>
         </div>
-        {props.isLogin && (
+        {props.isLogin ? (
           <Modal
             isOpen={isMenuOpen}
             onRequestClose={() => setIsMenuOpen(!isMenuOpen)}
@@ -93,6 +95,8 @@ export default function Header(props: any) {
               </li>
             </ul>
           </Modal>
+        ) : (
+          <></>
         )}
       </header>
     </>

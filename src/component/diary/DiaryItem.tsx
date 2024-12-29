@@ -2,7 +2,7 @@ import { FC, memo, useState } from 'react'
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/solid'
 import { useMutateDiary } from '../../hooks/useMutateDiary'
 import { Diary } from '../../types'
-import { Modal, Box, Card } from '@mui/material'
+import { Modal, Box, Card, Dialog } from '@mui/material'
 import useStore from '../../store'
 
 const DiaryItemMemo: FC<Omit<Diary, 'updated_at'>> = ({
@@ -27,6 +27,17 @@ const DiaryItemMemo: FC<Omit<Diary, 'updated_at'>> = ({
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
 
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+
+  const handleDeleteClick = () => {
+    setIsDeleteModalOpen(true)
+  }
+
+  const handleConfirmDelete = () => {
+    deleteDiaryMutation.mutate(id)
+    setIsDeleteModalOpen(false)
+  }
+
   const EditDiaryHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     // 最新のeditedDiaryの内容を使用
@@ -49,7 +60,7 @@ const DiaryItemMemo: FC<Omit<Diary, 'updated_at'>> = ({
             />
             <TrashIcon
               className="w-5 h-5 text-orange-500 cursor-pointer hover:text-orange-600"
-              onClick={() => deleteDiaryMutation.mutate(id)}
+              onClick={handleDeleteClick}
             />
           </div>
           <div className="text-right">
@@ -95,6 +106,30 @@ const DiaryItemMemo: FC<Omit<Diary, 'updated_at'>> = ({
           </form>
         </Box>
       </Modal>
+      <Dialog
+        open={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+      >
+        <div className="p-6">
+          <h3 className="text-lg font-medium mb-4">
+            本当に削除してもよろしいですか？
+          </h3>
+          <div className="flex justify-end space-x-4">
+            <button
+              onClick={() => setIsDeleteModalOpen(false)}
+              className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded"
+            >
+              キャンセル
+            </button>
+            <button
+              onClick={handleConfirmDelete}
+              className="px-4 py-2 bg-red-500 text-white hover:bg-red-600 rounded"
+            >
+              削除する
+            </button>
+          </div>
+        </div>
+      </Dialog>
     </>
   )
 }
