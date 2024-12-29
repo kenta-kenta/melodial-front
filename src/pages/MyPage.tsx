@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import { useQueryDiaryDates } from '../hooks/useQueryDiaries'
 import Calendar from '../component/mypage/Calendar'
-import Profile from '../component/mypage/Profile'
-import Activity from '../component/mypage/Activity'
-import Setting from '../component/mypage/Setting'
 
 const MyPage: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date())
@@ -16,9 +13,6 @@ const MyPage: React.FC = () => {
         setCurrentDate={setCurrentDate}
         diaryDates={diaryDates}
       />
-      <Profile />
-      <Activity />
-      <Setting />
     </div>
   )
 }
