@@ -1,6 +1,7 @@
 import { useState, FormEvent } from 'react'
 import { useMutateAuth } from '../hooks/useMutateAuth'
 import { AuthForm } from '../component/auth/Auth'
+import Header from '../layouts/Header'
 
 export const Auth = () => {
   const [email, setEmail] = useState('')
@@ -24,14 +25,17 @@ export const Auth = () => {
     }
   }
   return (
-    <AuthForm
-      email={email}
-      setEmail={setEmail}
-      pw={pw}
-      setPw={setPw}
-      isLogin={isLogin}
-      setIsLogin={setIsLogin}
-      onSubmit={submitAuthHandler}
-    />
+    <>
+      <Header isLogin={false} />
+      <AuthForm
+        email={email}
+        setEmail={setEmail}
+        pw={pw}
+        setPw={setPw}
+        isLogin={isLogin}
+        setIsLogin={setIsLogin}
+        onSubmit={submitAuthHandler}
+      />
+    </>
   )
 }
