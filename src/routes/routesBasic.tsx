@@ -38,19 +38,6 @@ function AppRoutes() {
       </Routes>
     </BrowserRouter>
   )
-
-  // const router = createBrowserRouter(
-  //   createRoutesFromElements(
-  //     <Route path="/" element={<Auth />}>
-  //       <Route path="/home" element={<Home />} />
-  //       <Route path="diary" element={<Diary />} />
-  //       <Route path="music" element={<MusicLibrary />} />
-  //       <Route path="mypage" element={<MyPage />} />
-  //     </Route>
-  //   )
-  // )
-
-  // return router
 }
 
 export default AppRoutes
