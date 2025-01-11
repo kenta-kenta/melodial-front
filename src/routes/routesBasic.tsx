@@ -8,6 +8,7 @@ import Home from '../pages/Home'
 import Diary from '../pages/Diary'
 import MyPage from '../pages/MyPage'
 import Diaries from '../pages/Diaries'
+import NotFound from '../pages/NotFound'
 
 function AppRoutes() {
   // CSRFトークンを取得してaxiosのデフォルトヘッダーに設定
@@ -32,23 +33,11 @@ function AppRoutes() {
           <Route path="diary" element={<Diary />} />
           <Route path="diaries" element={<Diaries />} />
           <Route path="mypage" element={<MyPage />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
   )
-
-  // const router = createBrowserRouter(
-  //   createRoutesFromElements(
-  //     <Route path="/" element={<Auth />}>
-  //       <Route path="/home" element={<Home />} />
-  //       <Route path="diary" element={<Diary />} />
-  //       <Route path="music" element={<MusicLibrary />} />
-  //       <Route path="mypage" element={<MyPage />} />
-  //     </Route>
-  //   )
-  // )
-
-  // return router
 }
 
 export default AppRoutes
