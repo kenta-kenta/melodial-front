@@ -8,6 +8,7 @@ import Home from '../pages/Home'
 import Diary from '../pages/Diary'
 import MyPage from '../pages/MyPage'
 import Diaries from '../pages/Diaries'
+import DiaryMusic from '../pages/DiaryMusic'
 import NotFound from '../pages/NotFound'
 
 function AppRoutes() {
@@ -30,7 +31,10 @@ function AppRoutes() {
         <Route path="/" element={<Auth />} />
         <Route path="/" element={<App />}>
           <Route path="/home" element={<Home />} />
-          <Route path="diary" element={<Diary />} />
+          <Route path="diary">
+            <Route index element={<Diary />} />
+            <Route path="music/:diaryId" element={<DiaryMusic />} />
+          </Route>
           <Route path="diaries" element={<Diaries />} />
           <Route path="mypage" element={<MyPage />} />
           <Route path="*" element={<NotFound />} />

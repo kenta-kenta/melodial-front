@@ -1,6 +1,7 @@
 import { DiaryForm } from '../component/diary/DiaryForm'
 import { DiaryHint } from '../component/diary/DiaryHint'
 import { useMutateDiary } from '../hooks/useMutateDiary'
+import AudioPlayer from '../component/music/AudioPlayer'
 import useStore from '../store'
 import { FormEvent } from 'react'
 
@@ -29,6 +30,11 @@ const Diary = () => {
           onSubmit={submitDiaryHandler}
         />
         <DiaryHint />
+        <AudioPlayer
+          imageUrl="https://files.topmediai.com/aimusic/api/ea0e0432-c614-4a41-b35b-142c4a17e52d-image.png"
+          audioUrl="https://files.topmediai.com/aimusic/api/ea0e0432-c614-4a41-b35b-142c4a17e52d-audio.mp3"
+          title="ボタン音"
+        />
       </div>
     </div>
   )
