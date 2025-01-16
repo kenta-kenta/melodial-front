@@ -41,3 +41,24 @@ export type DiaryDate = {
 export type DiaryDatesResponse = {
     dates: DiaryDate[];
 }
+
+export type MusicRequest = {
+    prompt: string;
+    lyrics: string;
+    title: string;
+  };
+  
+  export type MusicData = {
+    audio_file: string;
+    image_file: string;
+    item_uuid: string;
+    title: string;
+    lyric: string;
+    tags: string;
+  };
+  
+  export type MusicResponse = {
+    status: number;
+    message: string;
+    data: MusicData[];
+  };
