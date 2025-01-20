@@ -1,14 +1,12 @@
-export type Diary = {
+export interface Diary {
     id: number;
     content: string;
-    created_at: string;
-    updated_at: string;
+    data?: MusicData[];
+    created_at?: string;
+    updated_at?: string;
 }
 
-export type EditedDiary = {
-    id: number;
-    content: string;
-}
+export type EditedDiary = Omit<Diary, 'created_at' | 'updated_at'>
 
 export type User = {
     id: number;
@@ -44,21 +42,19 @@ export type DiaryDatesResponse = {
 
 export type MusicRequest = {
     prompt: string;
-    lyrics: string;
-    title: string;
-  };
+  }
   
-  export type MusicData = {
+export interface MusicData {
     audio_file: string;
     image_file: string;
     item_uuid: string;
     title: string;
     lyric: string;
     tags: string;
-  };
-  
-  export type MusicResponse = {
+}
+
+export type MusicResponse = {
     status: number;
     message: string;
-    data: MusicData[];
-  };
+    data: MusicData;
+}

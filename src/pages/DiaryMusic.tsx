@@ -1,44 +1,23 @@
-import { useParams } from 'react-router-dom'
-import { useMutateMusic } from '../hooks/useMutateMusic'
-import { MusicResponse } from '../types'
+import { useLocation } from 'react-router-dom'
 import AudioPlayer from '../component/music/AudioPlayer'
 
 const DiaryMusic = () => {
-  const { diaryId } = useParams()
-  const mutation = useMutateMusic(diaryId as string)
-
-  const handleClick = () => {
-    // mutateを呼び出してAPIリクエストを開始
-    mutation.mutate({
-      prompt: 'テスト用プロンプト',
-      lyrics: 'テスト歌詞',
-      title: 'テストああああ',
-    })
-  }
-
-  const data: MusicResponse = mutation.data as MusicResponse
-
+  const location = useLocation()
+  const musicData = location.state.musicData
+  const DiaryData = location.state.DiaryData
   return (
-    <div className="container mx-auto px-4 py-20">
-      {/* ローディング状態の確認 */}
-      {mutation.isLoading && <p>生成中...</p>}
-
-      {/* エラー状態の確認 */}
-      {mutation.error && <p>エラーが発生しました</p>}
-
-      {/* データの確認 */}
-      {mutation.data && (
+    <>
+      <div className="mt-20">
+        <p className="text-center text-lg font-bold mb-4">
+          {DiaryData.content}
+        </p>
         <AudioPlayer
-          audioUrl={data?.data[0].audio_file}
-          imageUrl={data?.data[0].image_file}
-          title={data?.data[0].title}
+          audioUrl={musicData.audio_file}
+          imageUrl={musicData.image_file}
+          title={musicData.title}
         />
-      )}
-
-      <button className="mx-4 mx-auto mt-20" onClick={handleClick}>
-        音楽を生成
-      </button>
-    </div>
+      </div>
+    </>
   )
 }
 

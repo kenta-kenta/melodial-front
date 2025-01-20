@@ -11,7 +11,7 @@ export const useMutateDiary = () => {
     const resetEditedDiary = useStore((state) => state.resetEditedDiary)
 
     const createDiaryMutation = useMutation(
-        (diary: Omit<Diary, 'id' | 'created_at' | 'updated_at'>) =>
+        (diary: Omit<Diary, 'id' | 'music_data' | 'created_at' | 'updated_at'>) =>
             axios.post<Diary>(`${import.meta.env.VITE_API_URL}/diaries`, diary),
             {
             onSuccess: (res) => {
