@@ -65,7 +65,7 @@ const DiaryItemMemo: FC<Omit<Diary, 'updated_at'>> = ({
           </div>
           <div className="text-right">
             <span className="text-xs text-gray-500">
-              {formatDate(created_at)}
+              {formatDate(created_at as string)}
             </span>
           </div>
         </Card>
