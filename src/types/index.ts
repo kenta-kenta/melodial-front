@@ -1,7 +1,7 @@
 export interface Diary {
     id: number;
     content: string;
-    data?: MusicData[];
+    music?: MusicData[];
     created_at?: string;
     updated_at?: string;
 }
