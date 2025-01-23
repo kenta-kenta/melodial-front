@@ -8,7 +8,10 @@ const DiaryMusic = () => {
   const DiaryData = location.state.DiaryData
 
   return (
-    <Container maxWidth="lg" sx={{ py: { xs: 4, sm: 6, md: 10 } }}>
+    <Container maxWidth="lg" sx={{ py: 10 }}>
+      <h1 className="text-2xl font-bold mb-8 text-center text-orange-600">
+        日記と音楽
+      </h1>
       <Box
         sx={{
           maxWidth: { xs: '100%', sm: '80%', md: '2xl' },
