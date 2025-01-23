@@ -43,10 +43,15 @@ const DiaryItemMemo: FC<Omit<Diary, 'updated_at'>> = ({
 
   const EditDiaryHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // 最新のeditedDiaryの内容を使用
+
+    if (editedDiary.content === '') {
+      handleClose()
+      return
+    }
+
     updateDiaryMutation.mutate({
       id: id,
-      content: editedDiary.content, // ここを変更
+      content: editedDiary.content,
     })
     handleClose()
   }
