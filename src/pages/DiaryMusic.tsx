@@ -37,7 +37,7 @@ const DiaryMusic = () => {
             sx={{
               whiteSpace: 'pre-wrap',
               wordBreak: 'break-word',
-              color: 'text.secondary',
+              color: 'text-black',
               fontSize: { xs: '0.9rem', sm: '1rem' },
             }}
           >
