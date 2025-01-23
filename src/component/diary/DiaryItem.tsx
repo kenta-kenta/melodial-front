@@ -1,15 +1,18 @@
 import { FC, memo, useState } from 'react'
-import { PencilIcon, TrashIcon } from '@heroicons/react/24/solid'
 import { useMutateDiary } from '../../hooks/useMutateDiary'
 import { Diary } from '../../types'
 import { Modal, Box, Card, Dialog } from '@mui/material'
 import useStore from '../../store'
+import { Create, Delete, MusicNote } from '@mui/icons-material'
+import { useNavigate } from 'react-router-dom'
 
 const DiaryItemMemo: FC<Omit<Diary, 'updated_at'>> = ({
   id,
   content,
+  music,
   created_at,
 }) => {
+  const navigate = useNavigate()
   const { editedDiary } = useStore()
   const updateDiary = useStore((state) => state.updateEditedDiary)
   const { updateDiaryMutation, deleteDiaryMutation } = useMutateDiary()
@@ -40,12 +43,24 @@ const DiaryItemMemo: FC<Omit<Diary, 'updated_at'>> = ({
 
   const EditDiaryHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // 最新のeditedDiaryの内容を使用
+
+    if (editedDiary.content === '') {
+      handleClose()
+      return
+    }
+
     updateDiaryMutation.mutate({
       id: id,
-      content: editedDiary.content, // ここを変更
+      content: editedDiary.content,
     })
     handleClose()
+  }
+
+  const handleMusic = () => {
+    if (!music) return
+    navigate(`/diary/music/${id}`, {
+      state: { musicData: music[0], DiaryData: { id, content } },
+    })
   }
 
   return (
@@ -54,18 +69,22 @@ const DiaryItemMemo: FC<Omit<Diary, 'updated_at'>> = ({
         <Card className="p-3">
           <div className="whitespace-pre-wrap break-words">{content}</div>
           <div className="flex justify-end space-x-2">
-            <PencilIcon
+            <MusicNote
+              className="w-5 h-5 text-orange-500 cursor-pointer hover:text-orange-600"
+              onClick={handleMusic}
+            />
+            <Create
               className="w-5 h-5 text-orange-500 cursor-pointer hover:text-orange-600"
               onClick={() => handleOpen()}
             />
-            <TrashIcon
+            <Delete
               className="w-5 h-5 text-orange-500 cursor-pointer hover:text-orange-600"
               onClick={handleDeleteClick}
             />
           </div>
           <div className="text-right">
             <span className="text-xs text-gray-500">
-              {formatDate(created_at)}
+              {formatDate(created_at as string)}
             </span>
           </div>
         </Card>

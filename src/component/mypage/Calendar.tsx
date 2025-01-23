@@ -57,6 +57,7 @@ const Calendar: FC<CalendarProps> = ({
     <Card className="my-4 bg-white shadow-md rounded">
       <CardHeader
         title="カレンダー"
+        classes={{ title: 'text-lg font-semibold text-orange-600' }}
         action={
           <div className="flex space-x-2">
             <IconButton onClick={handlePrevMonth}>
