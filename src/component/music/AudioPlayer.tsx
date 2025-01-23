@@ -26,7 +26,7 @@ const AudioPlayer = ({ audioUrl, imageUrl, title }: AudioPlayerProps) => {
     }
   }
 
-  const handleSeek = (event: Event, value: number | number[]) => {
+  const handleSeek = (_: Event, value: number | number[]) => {
     const time = Array.isArray(value) ? value[0] : value
     if (audioRef.current) {
       audioRef.current.currentTime = time

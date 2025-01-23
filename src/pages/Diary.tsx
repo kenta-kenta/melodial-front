@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { DiaryForm } from '../component/diary/DiaryForm'
-import AudioPlayer from '../component/music/AudioPlayer'
-import { EditedDiary, MusicResponse } from '../types'
+import { EditedDiary } from '../types'
 import { useMutateDiary } from '../hooks/useMutateDiary'
 import { useNavigate } from 'react-router-dom'
 import { DiaryHint } from '../component/diary/DiaryHint'
@@ -12,7 +11,6 @@ const Diary = () => {
     id: 0,
     content: '',
   })
-  const [musicData, setMusicData] = useState<MusicResponse['data'] | null>(null)
   const { createDiaryMutation } = useMutateDiary()
 
   const updateDiary = (diary: EditedDiary) => {
@@ -24,10 +22,8 @@ const Diary = () => {
     const result = await createDiaryMutation.mutateAsync({
       content: editedDiary.content,
     })
-    setMusicData(result.data.data?.[0] || null)
-    console.log(result.data)
     navigate('/diary/music/1', {
-      state: { musicData: result.data.data?.[0], DiaryData: editedDiary },
+      state: { musicData: result.data.music?.[0], DiaryData: editedDiary },
     })
   }
 
