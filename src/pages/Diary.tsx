@@ -50,7 +50,7 @@ const Diary = () => {
               あなたの日記から素敵な音楽を作成中です
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-              (生成には約2分かかります。少々お待ちください)
+              (生成には約3分かかります。少々お待ちください)
             </Typography>
           </Box>
         )}
