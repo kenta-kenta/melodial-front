@@ -30,7 +30,7 @@ const Diaries = () => {
                     key={diary.id}
                     id={diary.id}
                     content={diary.content}
-                    music={diary.music}
+                    data={diary.data}
                     created_at={diary.created_at}
                   />
                 ))}

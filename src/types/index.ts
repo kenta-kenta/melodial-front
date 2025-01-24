@@ -56,5 +56,5 @@ export interface MusicData {
 export type MusicResponse = {
     status: number;
     message: string;
-    data: MusicData;
+    data: MusicData[];
 }
