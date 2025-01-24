@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 import MainLayout from './layouts/MainLayout'
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
 
-function App() {
+function App({ isLogin }: { isLogin: boolean }) {
   const theme = createTheme({
     palette: {
       primary: {
@@ -14,7 +14,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <MainLayout>
+      <MainLayout isLogin={isLogin}>
         <Outlet />
       </MainLayout>
     </ThemeProvider>

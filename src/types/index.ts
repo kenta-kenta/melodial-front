@@ -1,7 +1,7 @@
 export interface Diary {
     id: number;
     content: string;
-    music?: MusicData[];
+    data?: MusicData[];
     created_at?: string;
     updated_at?: string;
 }
@@ -56,5 +56,5 @@ export interface MusicData {
 export type MusicResponse = {
     status: number;
     message: string;
-    data: MusicData;
+    data: MusicData[];
 }

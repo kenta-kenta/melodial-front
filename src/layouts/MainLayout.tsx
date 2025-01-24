@@ -4,14 +4,15 @@ import Footer from './Footer'
 
 type MainLayoutProps = {
   children: React.ReactNode
+  isLogin?: boolean
 }
 
-const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
+const MainLayout: React.FC<MainLayoutProps> = ({ children, isLogin }) => {
   return (
     <div>
-      <Header isLogin={true} />
+      <Header isLogin={isLogin} />
       <main className="min-h-screen">{children}</main>
-      <Footer />
+      <Footer isLogin={isLogin} />
     </div>
   )
 }
