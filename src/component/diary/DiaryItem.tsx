@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 const DiaryItemMemo: FC<Omit<Diary, 'updated_at'>> = ({
   id,
   content,
-  data,
+  music_data,
   created_at,
 }) => {
   const navigate = useNavigate()
@@ -57,9 +57,10 @@ const DiaryItemMemo: FC<Omit<Diary, 'updated_at'>> = ({
   }
 
   const handleMusic = () => {
-    if (!data) return
+    console.log(music_data)
+    if (!music_data) return
     navigate(`/diary/music/${id}`, {
-      state: { musicData: data[0], DiaryData: { id, content } },
+      state: { musicData: music_data[0], DiaryData: { id, content } },
     })
   }
 

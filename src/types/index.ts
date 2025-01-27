@@ -1,7 +1,7 @@
 export interface Diary {
     id: number;
     content: string;
-    data?: MusicData[];
+    music_data?: MusicData[];
     created_at?: string;
     updated_at?: string;
 }
@@ -24,7 +24,7 @@ export type Credential = {
 }
 
 export type PaginatedResponse = {
-  data: Diary[];
+  diary_response: Diary[];
   total_items: number;
   page: number;
   page_size: number;
@@ -56,5 +56,5 @@ export interface MusicData {
 export type MusicResponse = {
     status: number;
     message: string;
-    data: MusicData[];
+    music: MusicData[];
 }

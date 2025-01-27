@@ -22,15 +22,15 @@ const Diaries = () => {
         <div className="mb-16">
           {isLoading ? (
             <p className="text-center">Loading...</p>
-          ) : data?.data && data.data.length > 0 ? (
+          ) : data?.diary_response && data.diary_response.length > 0 ? (
             <>
               <ul className="space-y-4">
-                {data.data.map((diary) => (
+                {data?.diary_response.map((diary) => (
                   <DiaryItem
                     key={diary.id}
                     id={diary.id}
                     content={diary.content}
-                    data={diary.data}
+                    music_data={diary.music_data}
                     created_at={diary.created_at}
                   />
                 ))}

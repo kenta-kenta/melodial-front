@@ -1,11 +1,66 @@
-import { useLocation } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import AudioPlayer from '../component/music/AudioPlayer'
-import { Container, Card, Typography, Box } from '@mui/material'
+import {
+  Container,
+  Card,
+  Typography,
+  Box,
+  CircularProgress,
+} from '@mui/material'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+
+interface MusicData {
+  audio_file: string
+  image_file: string
+  item_uuid: string
+  lyric: string
+  tags: string
+  title: string
+}
+
+interface DiaryResponse {
+  id: number
+  content: string
+  music_data: MusicData[]
+  created_at: string
+  updated_at: string
+}
 
 const DiaryMusic = () => {
-  const location = useLocation()
-  const musicData = location.state.musicData
-  const DiaryData = location.state.DiaryData
+  const { diaryId } = useParams()
+  const [response, setResponse] = useState<DiaryResponse>({} as DiaryResponse)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchDiary = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/diaries/${diaryId}`
+        )
+        console.log(response.data)
+        setResponse(response.data)
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchDiary()
+  }, [diaryId])
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  if (loading) {
+    return (
+      <Container maxWidth="lg" sx={{ py: 10, textAlign: 'center' }}>
+        <CircularProgress />
+      </Container>
+    )
+  }
 
   return (
     <Container maxWidth="lg" sx={{ py: 10 }}>
@@ -44,7 +99,7 @@ const DiaryMusic = () => {
               fontSize: { xs: '0.9rem', sm: '1rem' },
             }}
           >
-            {DiaryData.content}
+            {response.content}
           </Typography>
         </Card>
 
@@ -52,11 +107,13 @@ const DiaryMusic = () => {
           <Typography variant="h5" color="primary" sx={{ mb: 2 }}>
             生成された音楽
           </Typography>
-          <AudioPlayer
-            audioUrl={musicData.audio_file}
-            imageUrl={musicData.image_file}
-            title={musicData.title}
-          />
+          {response && response.music_data.length > 0 && (
+            <AudioPlayer
+              audioUrl={response.music_data[0].audio_file}
+              imageUrl={response.music_data[0].image_file}
+              title={response.music_data[0].title}
+            />
+          )}
         </Card>
       </Box>
     </Container>
