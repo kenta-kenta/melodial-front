@@ -59,9 +59,7 @@ const DiaryItemMemo: FC<Omit<Diary, 'updated_at'>> = ({
   const handleMusic = () => {
     console.log(music_data)
     if (!music_data) return
-    navigate(`/diary/music/${id}`, {
-      state: { musicData: music_data[0], DiaryData: { id, content } },
-    })
+    navigate(`/diary/music/${id}`)
   }
 
   return (
