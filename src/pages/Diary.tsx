@@ -24,9 +24,7 @@ const Diary = () => {
       content: editedDiary.content,
     })
     console.log(result)
-    navigate('/diary/music/1', {
-      state: { musicData: result.data.data?.[0], DiaryData: editedDiary },
-    })
+    navigate(`/diary/music/${result.data.id}`)
   }
 
   return (
