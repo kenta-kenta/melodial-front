@@ -6,6 +6,7 @@ import {
   Grid,
   Button,
   Stack,
+  Alert,
 } from '@mui/material'
 import { Create, MusicNote, Favorite } from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
@@ -15,6 +16,18 @@ const Welcome = () => {
 
   return (
     <Container maxWidth="lg" sx={{ py: 10 }}>
+      <Alert
+        severity="warning"
+        sx={{
+          mb: 4,
+          mx: 'auto',
+          maxWidth: 'sm',
+        }}
+      >
+        現在Safariブラウザでは正常に動作しない可能性があります。
+        修正作業を進めておりますので、しばらくの間Chrome等のブラウザをご利用ください。
+      </Alert>
+
       <Box sx={{ textAlign: 'center', mb: 8 }}>
         <Typography
           variant="h2"
